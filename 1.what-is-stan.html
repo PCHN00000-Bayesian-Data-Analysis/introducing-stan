@@ -378,7 +378,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stan-interfaces">Stan Interfaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-stan-workflow">The Stan Workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stan-interfaces">Stan Interfaces</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cmdstanr"><code class="docutils literal notranslate"><span class="pre">CmdStanR</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cmdstanpy"><code class="docutils literal notranslate"><span class="pre">CmdStanPy</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaces-on-this-unit">Interfaces on this Unit</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -400,28 +406,45 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="what-is-stan">
 <h1>What is Stan?<a class="headerlink" href="#what-is-stan" title="Link to this heading">#</a></h1>
 <p>….</p>
+<section id="the-stan-workflow">
+<h2>The Stan Workflow<a class="headerlink" href="#the-stan-workflow" title="Link to this heading">#</a></h2>
+</section>
 <section id="stan-interfaces">
 <h2>Stan Interfaces<a class="headerlink" href="#stan-interfaces" title="Link to this heading">#</a></h2>
-<p>During this unit, we will show code examples for both <code class="docutils literal notranslate"><span class="pre">cmdstanr</span></code> and <code class="docutils literal notranslate"><span class="pre">cmdstanpython</span></code></p>
+<section id="cmdstanr">
+<h3><code class="docutils literal notranslate"><span class="pre">CmdStanR</span></code><a class="headerlink" href="#cmdstanr" title="Link to this heading">#</a></h3>
+</section>
+<section id="cmdstanpy">
+<h3><code class="docutils literal notranslate"><span class="pre">CmdStanPy</span></code><a class="headerlink" href="#cmdstanpy" title="Link to this heading">#</a></h3>
+</section>
+<section id="interfaces-on-this-unit">
+<h3>Interfaces on this Unit<a class="headerlink" href="#interfaces-on-this-unit" title="Link to this heading">#</a></h3>
+<p>During this unit, we will show code examples for both <code class="docutils literal notranslate"><span class="pre">CmdStanR</span></code> and <code class="docutils literal notranslate"><span class="pre">CmdStanPy</span></code>. This will be shown in a tabbed-group, as shown below</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" data-sync-group="code" data-sync-id="R" for="sd-tab-item-0">
 R</label><div class="sd-tab-content docutils">
-<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s">&quot;input/data-shopping-1.csv&quot;</span><span class="p">)</span>
-<span class="n">d</span><span class="o">$</span><span class="n">Income</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">d</span><span class="o">$</span><span class="n">Income</span><span class="o">/</span><span class="m">100</span>
-<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="w">        </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;input/data-shopping-1.csv&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">$</span><span class="n">Income</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data</span><span class="o">$</span><span class="n">Income</span><span class="o">/</span><span class="m">100</span>
+<span class="n">N</span><span class="w">           </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" data-sync-group="code" data-sync-id="python" for="sd-tab-item-1">
 PYTHON</label><div class="sd-tab-content docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;input/data-shopping-1.csv&quot;</span><span class="p">)</span>
-<span class="n">d</span><span class="o">.</span><span class="n">Income</span> <span class="o">/=</span> <span class="mi">100</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cmdstanpy</span> <span class="k">as</span> <span class="nn">Stan</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">Stan</span><span class="o">.</span><span class="n">CmdStanModel</span><span class="p">(</span><span class="n">stan_file</span><span class="o">=</span><span class="s1">&#39;bernoulli.stan&#39;</span><span class="p">)</span>
+<span class="n">fit</span>   <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;bernoulli.data.json&#39;</span><span class="p">)</span>
+
+<span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>For simplicity, all output within these lessons will be from <code class="docutils literal notranslate"><span class="pre">cmdstanr</span></code>, but you can try either interface using Posit Cloud. For the workshops, we will have both RStudio and Jupyter Notebooks with Stan installed. Duplicating any of these will create projects with Stan ready to use in whichever language you like.</p>
+</section>
 </section>
 </section>
 
@@ -489,7 +512,13 @@ PYTHON</label><div class="sd-tab-content docutils">
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stan-interfaces">Stan Interfaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-stan-workflow">The Stan Workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stan-interfaces">Stan Interfaces</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cmdstanr"><code class="docutils literal notranslate"><span class="pre">CmdStanR</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cmdstanpy"><code class="docutils literal notranslate"><span class="pre">CmdStanPy</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaces-on-this-unit">Interfaces on this Unit</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
